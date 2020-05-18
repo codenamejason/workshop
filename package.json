@@ -7,6 +7,7 @@
     "test": "test"
   },
   "dependencies": {
+    "@opengsn/gsn": "^2.0.1",
     "browserify": "16.5.1",
     "ethers": "5.0.0-beta.187",
     "ganache-cli": "6.11.0",
@@ -19,6 +20,7 @@
     "ganache": "yarn run ganache-cli -d --chainId 1337 --networkId 1337",
     "test": "truffle test",
     "compile": "truffle compile",
+    "gsn-start": "gsn start",
     "start": "truffle deploy && ./ui/compile.sh && yarn serve ./html"
   },
   "author": "",
