@@ -1,7 +1,13 @@
 const ethers = require('ethers')
 
 const { resolveConfigurationGSN, RelayProvider } = require('@opengsn/gsn')
-const paymasterAddress = require('../build/gsn/Paymaster.json').address
+
+const paymasterArtifact = require('../build/contracts/WhitelistPaymaster.json')
+const whitelistPaymasterAddress = paymasterArtifact.networks[window.ethereum.networkVersion].address
+
+// In truffle console run:
+// const pm = await WhitelistPaymaster.deployed()
+// pm.addToWhitelist('0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1')
 
 const contractArtifact = require('../build/contracts/CaptureTheFlag.json')
 const contractAddress = contractArtifact.networks[window.ethereum.networkVersion].address
@@ -12,7 +18,7 @@ let network
 
 async function identifyNetwork () {
   provider = new ethers.providers.Web3Provider(window.ethereum)
-  const gsnConfig = await resolveConfigurationGSN(window.ethereum, { paymasterAddress })
+  const gsnConfig = await resolveConfigurationGSN(window.ethereum, { paymasterAddress: whitelistPaymasterAddress })
   const gsnProvider = new RelayProvider(window.ethereum, gsnConfig)
   provider = new ethers.providers.Web3Provider(gsnProvider)
   network = await provider.ready
@@ -55,4 +61,3 @@ window.app = {
   log,
   identifyNetwork
 }
-

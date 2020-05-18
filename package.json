@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@opengsn/gsn": "^2.0.1",
+    "@opengsn/paymasters": "^2.0.1",
     "browserify": "16.5.1",
     "ethers": "5.0.0-beta.187",
     "ganache-cli": "6.11.0",
